@@ -1,0 +1,15 @@
+Flask
+Flask-WTF
+WTForms
+pandas
+openpyxl               
+xlrd                   
+matplotlib             
+seaborn                
+plotly                 
+scikit-learn           
+joblib                 
+statsmodels   
+pickle 
+numpy 
+streamlit       

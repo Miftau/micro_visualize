@@ -1,0 +1,33 @@
+<!-- microhub_flask/app/templates/index.html -->
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Microbiology Data Analysis</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        {{ form.file.label(class="form-label") }}
+        {{ form.file(class="form-control") }}
+        {% for error in form.file.errors %}
+            <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.analysis_type.label(class="form-label") }}
+        {{ form.analysis_type(class="form-select") }}
+    </div>
+
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+
+{% if plot_url %}
+    <h4 class="mt-4">Analysis Result</h4>
+    <img src="{{ plot_url }}" class="img-fluid">
+{% elif table %}
+    <h4 class="mt-4">Prediction Result</h4>
+    {{ table|safe }}
+{% endif %}
+{% endblock %}
