@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Manual Microbiology Analysis</h2>
+
+    <ul class="nav nav-tabs" id="formTabs" role="tablist">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#growth">Growth Rate</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#inhibition">Zone of Inhibition</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cfu">CFU Calculation</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#diversity">Diversity Index</a></li>
+    </ul>
+
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="growth">
+            <form method="POST">
+                {{ growth_form.hidden_tag() }}
+                {{ render_field(growth_form.initial_population, class="form-control") }}
+                {{ render_field(growth_form.final_population, class="form-control") }}
+                {{ render_field(growth_form.time_start, class="form-control") }}
+                {{ render_field(growth_form.time_end, class="form-control") }}
+                {{ growth_form.submit(class="btn btn-primary mt-2") }}
+            </form>
+            {% if growth_form.submit.data and stats %}
+                <div class="mt-3 alert alert-info">
+                    <p><strong>Growth Rate:</strong> {{ stats.growth_rate | round(4) }}</p>
+                    <p><strong>Log Growth Rate:</strong> {{ stats.log_growth_rate | round(4) }}</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="tab-pane fade" id="inhibition">
+            <form method="POST">
+                {{ inhibition_form.hidden_tag() }}
+                {{ render_field(inhibition_form.diameter, class="form-control") }}
+                {{ inhibition_form.submit(class="btn btn-primary mt-2") }}
+            </form>
+            {% if inhibition_form.submit.data and stats %}
+                <div class="mt-3 alert alert-info">
+                    <p><strong>Zone Diameter:</strong> {{ stats['Zone Diameter (mm)'] }}</p>
+                    <p><strong>Interpretation:</strong> {{ stats['Interpretation'] }}</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="tab-pane fade" id="cfu">
+            <form method="POST">
+                {{ cfu_form.hidden_tag() }}
+                {{ render_field(cfu_form.colony_count, class="form-control") }}
+                {{ render_field(cfu_form.dilution_factor, class="form-control") }}
+                {{ render_field(cfu_form.volume_plated, class="form-control") }}
+                {{ cfu_form.submit(class="btn btn-primary mt-2") }}
+            </form>
+            {% if cfu_form.submit.data and table %}
+                <div class="mt-3 alert alert-success">{{ table|safe }}</div>
+            {% endif %}
+        </div>
+
+        <div class="tab-pane fade" id="diversity">
+            <form method="POST">
+                {{ diversity_form.hidden_tag() }}
+                {{ render_field(diversity_form.species_counts, class="form-control") }}
+                {{ render_field(diversity_form.method, class="form-control") }}
+                {{ diversity_form.submit(class="btn btn-primary mt-2") }}
+            </form>
+            {% if diversity_form.submit.data and table %}
+                <div class="mt-3">{{ table|safe }}</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
