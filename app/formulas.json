@@ -1,0 +1,674 @@
+[
+  {
+    "name": "Specific Growth Rate (μ)",
+    "formula": "μ = (ln N2 - ln N1) / (t2 - t1)",
+    "latex": "\\mu = \\frac{\\ln N_2 - \\ln N_1}{t_2 - t_1}",
+    "description": "Calculates the specific (exponential) growth rate of a microbial population between two time points.",
+    "variables": {
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "N1": "Population (CFU/mL, cells/mL) at time t1",
+      "N2": "Population (CFU/mL, cells/mL) at time t2",
+      "t1": "Initial time (hours or minutes)",
+      "t2": "Final time (hours or minutes)"
+    },
+    "example": "If N1 = 1×10^3 CFU/mL at t1 = 0 h and N2 = 1×10^6 CFU/mL at t2 = 4 h, μ = (ln(1e6)-ln(1e3))/4 ≈ 1.723 h⁻¹.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Doubling Time (td)",
+    "formula": "td = ln(2) / μ",
+    "latex": "t_d = \\frac{\\ln 2}{\\mu}",
+    "description": "Calculates the time required for a microbial population to double in size during exponential growth.",
+    "variables": {
+      "td": "Doubling time (hours or minutes)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)"
+    },
+    "example": "If μ = 0.5 h⁻¹, td = ln(2)/0.5 ≈ 1.386 h.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Generation Time (g)",
+    "formula": "g = ln(2) / μ",
+    "latex": "g = \\frac{\\ln 2}{\\mu}",
+    "description": "Time required for one generation (doubling) of microbial cells, equivalent to doubling time.",
+    "variables": {
+      "g": "Generation time (hours or minutes)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)"
+    },
+    "example": "If μ = 0.693 h⁻¹, g = ln(2)/0.693 ≈ 1 h.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Exponential Growth (Population Size)",
+    "formula": "N = N0 * e^(μ*t)",
+    "latex": "N = N_0 \\cdot e^{\\mu t}",
+    "description": "Calculates the population size at time t during exponential growth.",
+    "variables": {
+      "N": "Population at time t (CFU/mL, cells/mL)",
+      "N0": "Initial population (CFU/mL, cells/mL)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "t": "Time (hours or minutes)"
+    },
+    "example": "If N0 = 1×10^3 CFU/mL, μ = 0.5 h⁻¹, t = 2 h, N = 1e3 * e^(0.5*2) ≈ 2.718×10^3 CFU/mL.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Number of Generations (n)",
+    "formula": "n = (ln N - ln N0) / ln(2)",
+    "latex": "n = \\frac{\\ln N - \\ln N_0}{\\ln 2}",
+    "description": "Calculates the number of microbial generations between two population sizes.",
+    "variables": {
+      "n": "Number of generations",
+      "N": "Final population (CFU/mL, cells/mL)",
+      "N0": "Initial population (CFU/mL, cells/mL)"
+    },
+    "example": "If N0 = 1×10^3 CFU/mL and N = 1×10^6 CFU/mL, n = (ln(1e6)-ln(1e3))/ln(2) ≈ 9.966 generations.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Growth Yield (Y)",
+    "formula": "Y = (X - X0) / S",
+    "latex": "Y = \\frac{X - X_0}{S}",
+    "description": "Calculates the biomass yield per unit of substrate consumed.",
+    "variables": {
+      "Y": "Growth yield (g biomass/g substrate)",
+      "X": "Final biomass concentration (g/L)",
+      "X0": "Initial biomass concentration (g/L)",
+      "S": "Substrate consumed (g/L)"
+    },
+    "example": "If X0 = 0.1 g/L, X = 2.1 g/L, S = 5 g/L, Y = (2.1-0.1)/5 = 0.4 g biomass/g substrate.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Monod Equation",
+    "formula": "μ = μ_max * S / (Ks + S)",
+    "latex": "\\mu = \\frac{\\mu_{\\max} \\cdot S}{K_s + S}",
+    "description": "Describes the relationship between specific growth rate and substrate concentration.",
+    "variables": {
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "μ_max": "Maximum specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "S": "Substrate concentration (g/L)",
+      "Ks": "Half-saturation constant (g/L)"
+    },
+    "example": "If μ_max = 0.8 h⁻¹, S = 2 g/L, Ks = 1 g/L, μ = 0.8 * 2 / (1 + 2) ≈ 0.533 h⁻¹.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Substrate Consumption Rate",
+    "formula": "qs = μ / Y",
+    "latex": "q_s = \\frac{\\mu}{Y}",
+    "description": "Calculates the specific substrate consumption rate.",
+    "variables": {
+      "qs": "Specific substrate consumption rate (g substrate/g biomass/h)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "Y": "Growth yield (g biomass/g substrate)"
+    },
+    "example": "If μ = 0.5 h⁻¹, Y = 0.4 g biomass/g substrate, qs = 0.5/0.4 = 1.25 g substrate/g biomass/h.",
+    "category": "Substrate Utilization"
+  },
+  {
+    "name": "Dilution Rate (D)",
+    "formula": "D = F / V",
+    "latex": "D = \\frac{F}{V}",
+    "description": "Calculates the dilution rate in a continuous culture system.",
+    "variables": {
+      "D": "Dilution rate (time⁻¹, e.g., h⁻¹)",
+      "F": "Flow rate (L/h)",
+      "V": "Volume of culture (L)"
+    },
+    "example": "If F = 0.2 L/h and V = 1 L, D = 0.2/1 = 0.2 h⁻¹.",
+    "category": "Continuous Culture"
+  },
+  {
+    "name": "Biomass Concentration in Chemostat",
+    "formula": "X = Y * (S0 - S)",
+    "latex": "X = Y \\cdot (S_0 - S)",
+    "description": "Calculates the steady-state biomass concentration in a chemostat.",
+    "variables": {
+      "X": "Biomass concentration (g/L)",
+      "Y": "Growth yield (g biomass/g substrate)",
+      "S0": "Initial substrate concentration (g/L)",
+      "S": "Residual substrate concentration (g/L)"
+    },
+    "example": "If Y = 0.5 g biomass/g substrate, S0 = 10 g/L, S = 2 g/L, X = 0.5 * (10-2) = 4 g/L.",
+    "category": "Continuous Culture"
+  },
+  {
+    "name": "Washout Dilution Rate",
+    "formula": "D_washout = μ_max * S / (Ks + S)",
+    "latex": "D_{\\text{washout}} = \\frac{\\mu_{\\max} \\cdot S}{K_s + S}",
+    "description": "Calculates the dilution rate at which biomass is washed out in a chemostat.",
+    "variables": {
+      "D_washout": "Washout dilution rate (time⁻¹, e.g., h⁻¹)",
+      "μ_max": "Maximum specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "S": "Substrate concentration (g/L)",
+      "Ks": "Half-saturation constant (g/L)"
+    },
+    "example": "If μ_max = 0.8 h⁻¹, S = 2 g/L, Ks = 1 g/L, D_washout = 0.8 * 2 / (1 + 2) ≈ 0.533 h⁻¹.",
+    "category": "Continuous Culture"
+  },
+  {
+    "name": "Oxygen Uptake Rate (OUR)",
+    "formula": "OUR = qO2 * X",
+    "latex": "\\text{OUR} = q_{O_2} \\cdot X",
+    "description": "Calculates the oxygen uptake rate of a microbial culture.",
+    "variables": {
+      "OUR": "Oxygen uptake rate (mmol O₂/L/h)",
+      "qO2": "Specific oxygen uptake rate (mmol O₂/g biomass/h)",
+      "X": "Biomass concentration (g/L)"
+    },
+    "example": "If qO2 = 2 mmol O₂/g/h, X = 3 g/L, OUR = 2 * 3 = 6 mmol O₂/L/h.",
+    "category": "Respiration"
+  },
+  {
+    "name": "Specific Oxygen Uptake Rate (qO2)",
+    "formula": "qO2 = OUR / X",
+    "latex": "q_{O_2} = \\frac{\\text{OUR}}{X}",
+    "description": "Calculates the specific oxygen uptake rate per unit biomass.",
+    "variables": {
+      "qO2": "Specific oxygen uptake rate (mmol O₂/g biomass/h)",
+      "OUR": "Oxygen uptake rate (mmol O₂/L/h)",
+      "X": "Biomass concentration (g/L)"
+    },
+    "example": "If OUR = 10 mmol O₂/L/h, X = 2 g/L, qO2 = 10/2 = 5 mmol O₂/g/h.",
+    "category": "Respiration"
+  },
+  {
+    "name": "Volumetric Oxygen Transfer Coefficient (kLa)",
+    "formula": "kLa = OUR / (C* - C)",
+    "latex": "k_L a = \\frac{\\text{OUR}}{C^* - C}",
+    "description": "Calculates the oxygen transfer coefficient in a bioreactor.",
+    "variables": {
+      "kLa": "Volumetric oxygen transfer coefficient (h⁻¹)",
+      "OUR": "Oxygen uptake rate (mmol O₂/L/h)",
+      "C*": "Saturated oxygen concentration (mmol O₂/L)",
+      "C": "Actual oxygen concentration (mmol O₂/L)"
+    },
+    "example": "If OUR = 5 mmol O₂/L/h, C* = 0.2 mmol O₂/L, C = 0.05 mmol O₂/L, kLa = 5/(0.2-0.05) ≈ 33.33 h⁻¹.",
+    "category": "Respiration"
+  },
+  {
+    "name": "Maintenance Coefficient (m)",
+    "formula": "m = qs - (μ / Y_max)",
+    "latex": "m = q_s - \\frac{\\mu}{Y_{\\max}}",
+    "description": "Calculates the maintenance energy coefficient for substrate consumption.",
+    "variables": {
+      "m": "Maintenance coefficient (g substrate/g biomass/h)",
+      "qs": "Specific substrate consumption rate (g substrate/g biomass/h)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "Y_max": "Maximum growth yield (g biomass/g substrate)"
+    },
+    "example": "If qs = 1.25 g substrate/g/h, μ = 0.5 h⁻¹, Y_max = 0.5 g biomass/g substrate, m = 1.25 - (0.5/0.5) = 0.25 g substrate/g/h.",
+    "category": "Substrate Utilization"
+  },
+  {
+    "name": "Product Formation Rate (qp)",
+    "formula": "qp = P / (X * t)",
+    "latex": "q_p = \\frac{P}{X \\cdot t}",
+    "description": "Calculates the specific product formation rate.",
+    "variables": {
+      "qp": "Specific product formation rate (g product/g biomass/h)",
+      "P": "Product concentration (g/L)",
+      "X": "Biomass concentration (g/L)",
+      "t": "Time (hours)"
+    },
+    "example": "If P = 10 g/L, X = 2 g/L, t = 5 h, qp = 10/(2*5) = 1 g product/g biomass/h.",
+    "category": "Product Formation"
+  },
+  {
+    "name": "Volumetric Productivity",
+    "formula": "Q = P / t",
+    "latex": "Q = \\frac{P}{t}",
+    "description": "Calculates the volumetric productivity of a product in a bioreactor.",
+    "variables": {
+      "Q": "Volumetric productivity (g/L/h)",
+      "P": "Product concentration (g/L)",
+      "t": "Time (hours)"
+    },
+    "example": "If P = 15 g/L, t = 10 h, Q = 15/10 = 1.5 g/L/h.",
+    "category": "Product Formation"
+  },
+  {
+    "name": "Yield Coefficient (Yp/s)",
+    "formula": "Yp/s = P / S",
+    "latex": "Y_{p/s} = \\frac{P}{S}",
+    "description": "Calculates the product yield per unit of substrate consumed.",
+    "variables": {
+      "Yp/s": "Product yield coefficient (g product/g substrate)",
+      "P": "Product concentration (g/L)",
+      "S": "Substrate consumed (g/L)"
+    },
+    "example": "If P = 8 g/L, S = 20 g/L, Yp/s = 8/20 = 0.4 g product/g substrate.",
+    "category": "Product Formation"
+  },
+  {
+    "name": "Cell Density (OD to Cell Concentration)",
+    "formula": "X = OD * k",
+    "latex": "X = \\text{OD} \\cdot k",
+    "description": "Converts optical density (OD) to cell concentration using a calibration factor.",
+    "variables": {
+      "X": "Cell concentration (cells/mL or g/L)",
+      "OD": "Optical density (absorbance units)",
+      "k": "Calibration factor (cells/mL/OD or g/L/OD)"
+    },
+    "example": "If OD = 0.5, k = 1×10^8 cells/mL/OD, X = 0.5 * 1e8 = 5×10^7 cells/mL.",
+    "category": "Cell Quantification"
+  },
+  {
+    "name": "Viable Cell Count (Plate Count)",
+    "formula": "CFU/mL = (Colonies * Dilution Factor) / Volume Plated",
+    "latex": "\\text{CFU/mL} = \\frac{\\text{Colonies} \\cdot \\text{Dilution Factor}}{\\text{Volume Plated}}",
+    "description": "Calculates the number of viable cells per mL using plate count method.",
+    "variables": {
+      "CFU/mL": "Colony-forming units per mL",
+      "Colonies": "Number of colonies counted on plate",
+      "Dilution Factor": "Reciprocal of dilution (e.g., 10^5 for 1:100,000)",
+      "Volume Plated": "Volume of sample plated (mL)"
+    },
+    "example": "If 50 colonies, dilution factor = 10^5, volume plated = 0.1 mL, CFU/mL = (50 * 10^5)/0.1 = 5×10^7 CFU/mL.",
+    "category": "Cell Quantification"
+  },
+  {
+    "name": "Log Reduction (Disinfection)",
+    "formula": "Log Reduction = log10(N0 / N)",
+    "latex": "\\text{Log Reduction} = \\log_{10} \\left( \\frac{N_0}{N} \\right)",
+    "description": "Calculates the logarithmic reduction in microbial population due to disinfection.",
+    "variables": {
+      "Log Reduction": "Logarithmic reduction in population",
+      "N0": "Initial population (CFU/mL, cells/mL)",
+      "N": "Final population (CFU/mL, cells/mL)"
+    },
+    "example": "If N0 = 1×10^6 CFU/mL, N = 1×10^2 CFU/mL, Log Reduction = log10(1e6/1e2) = 4.",
+    "category": "Disinfection"
+  },
+  {
+    "name": "D-Value (Decimal Reduction Time)",
+    "formula": "D = t / log10(N0 / N)",
+    "latex": "D = \\frac{t}{\\log_{10} \\left( \\frac{N_0}{N} \\right)}",
+    "description": "Calculates the time required to reduce microbial population by 90% at a specific condition.",
+    "variables": {
+      "D": "Decimal reduction time (minutes or seconds)",
+      "t": "Time of exposure (minutes or seconds)",
+      "N0": "Initial population (CFU/mL, cells/mL)",
+      "N": "Final population (CFU/mL, cells/mL)"
+    },
+    "example": "If t = 2 min, N0 = 1×10^6 CFU/mL, N = 1×10^5 CFU/mL, D = 2/log10(1e6/1e5) = 2/1 = 2 min.",
+    "category": "Disinfection"
+  },
+  {
+    "name": "Z-Value (Thermal Resistance)",
+    "formula": "Z = (T2 - T1) / log10(D1 / D2)",
+    "latex": "Z = \\frac{T_2 - T_1}{\\log_{10} \\left( \\frac{D_1}{D_2} \\right)}",
+    "description": "Calculates the temperature change required to change the D-value by a factor of 10.",
+    "variables": {
+      "Z": "Z-value (temperature, °C)",
+      "T1": "First temperature (°C)",
+      "T2": "Second temperature (°C)",
+      "D1": "D-value at T1 (minutes)",
+      "D2": "D-value at T2 (minutes)"
+    },
+    "example": "If T1 = 60°C, T2 = 70°C, D1 = 10 min, D2 = 1 min, Z = (70-60)/log10(10/1) = 10/1 = 10°C.",
+    "category": "Disinfection"
+  },
+  {
+    "name": "F-Value (Sterilization Time)",
+    "formula": "F = D * log10(N0 / N)",
+    "latex": "F = D \\cdot \\log_{10} \\left( \\frac{N_0}{N} \\right)",
+    "description": "Calculates the equivalent time at a reference temperature to achieve a specific microbial reduction.",
+    "variables": {
+      "F": "F-value (minutes)",
+      "D": "Decimal reduction time (minutes)",
+      "N0": "Initial population (CFU/mL, cells/mL)",
+      "N": "Final population (CFU/mL, cells/mL)"
+    },
+    "example": "If D = 2 min, N0 = 1×10^6 CFU/mL, N = 1×10^2 CFU/mL, F = 2 * log10(1e6/1e2) = 2 * 4 = 8 min.",
+    "category": "Disinfection"
+  },
+  {
+    "name": "F0-Value (Sterilization at 121°C)",
+    "formula": "F0 = t * 10^((T - 121)/Z)",
+    "latex": "F_0 = t \\cdot 10^{\\frac{T - 121}{Z}}",
+    "description": "Calculates the equivalent sterilization time at 121°C based on temperature and Z-value.",
+    "variables": {
+      "F0": "F0-value (minutes at 121°C)",
+      "t": "Time of exposure (minutes)",
+      "T": "Actual temperature (°C)",
+      "Z": "Z-value (temperature, °C)"
+    },
+    "example": "If t = 15 min, T = 115°C, Z = 10°C, F0 = 15 * 10^((115-121)/10) = 15 * 10^(-0.6) ≈ 3.57 min.",
+    "category": "Disinfection"
+  },
+  {
+    "name": "Specific Death Rate (kd)",
+    "formula": "kd = (ln N0 - ln N) / t",
+    "latex": "k_d = \\frac{\\ln N_0 - \\ln N}{t}",
+    "description": "Calculates the specific death rate of a microbial population.",
+    "variables": {
+      "kd": "Specific death rate (time⁻¹, e.g., h⁻¹)",
+      "N0": "Initial population (CFU/mL, cells/mL)",
+      "N": "Final population (CFU/mL, cells/mL)",
+      "t": "Time (hours or minutes)"
+    },
+    "example": "If N0 = 1×10^6 CFU/mL, N = 1×10^4 CFU/mL, t = 2 h, kd = (ln(1e6)-ln(1e4))/2 ≈ 2.303 h⁻¹.",
+    "category": "Disinfection"
+  },
+  {
+    "name": "Arrhenius Equation (Temperature Effect on kd)",
+    "formula": "kd = A * e^(-Ea/(R*T))",
+    "latex": "k_d = A \\cdot e^{-\\frac{E_a}{R \\cdot T}}",
+    "description": "Describes the temperature dependence of the microbial death rate.",
+    "variables": {
+      "kd": "Specific death rate (time⁻¹, e.g., h⁻¹)",
+      "A": "Pre-exponential factor (time⁻¹)",
+      "Ea": "Activation energy (J/mol)",
+      "R": "Gas constant (8.314 J/mol·K)",
+      "T": "Absolute temperature (K)"
+    },
+    "example": "If A = 1×10^10 h⁻¹, Ea = 50 kJ/mol, T = 333 K, kd = 1e10 * e^(-50000/(8.314*333)) ≈ 0.0014 h⁻¹.",
+    "category": "Disinfection"
+  },
+  {
+    "name": "Specific Productivity",
+    "formula": "qp = μ * Yp/x",
+    "latex": "q_p = \\mu \\cdot Y_{p/x}",
+    "description": "Calculates the specific productivity based on growth rate and product yield per biomass.",
+    "variables": {
+      "qp": "Specific product formation rate (g product/g biomass/h)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "Yp/x": "Product yield per biomass (g product/g biomass)"
+    },
+    "example": "If μ = 0.4 h⁻¹, Yp/x = 0.5 g product/g biomass, qp = 0.4 * 0.5 = 0.2 g product/g biomass/h.",
+    "category": "Product Formation"
+  },
+  {
+    "name": "Batch Culture Time to Reach Stationary Phase",
+    "formula": "t = (ln X - ln X0) / μ",
+    "latex": "t = \\frac{\\ln X - \\ln X_0}{\\mu}",
+    "description": "Calculates the time required to reach a specific biomass concentration in batch culture.",
+    "variables": {
+      "t": "Time (hours)",
+      "X": "Final biomass concentration (g/L)",
+      "X0": "Initial biomass concentration (g/L)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)"
+    },
+    "example": "If X0 = 0.1 g/L, X = 10 g/L, μ = 0.5 h⁻¹, t = (ln(10)-ln(0.1))/0.5 ≈ 9.21 h.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Substrate Utilization Rate",
+    "formula": "r_s = μ * X / Y",
+    "latex": "r_s = \\frac{\\mu \\cdot X}{Y}",
+    "description": "Calculates the rate of substrate utilization in a microbial culture.",
+    "variables": {
+      "r_s": "Substrate utilization rate (g/L/h)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "X": "Biomass concentration (g/L)",
+      "Y": "Growth yield (g biomass/g substrate)"
+    },
+    "example": "If μ = 0.5 h⁻¹, X = 2 g/L, Y = 0.4 g biomass/g substrate, r_s = (0.5 * 2)/0.4 = 2.5 g/L/h.",
+    "category": "Substrate Utilization"
+  },
+  {
+    "name": "Carbon Dioxide Evolution Rate (CER)",
+    "formula": "CER = qCO2 * X",
+    "latex": "\\text{CER} = q_{CO_2} \\cdot X",
+    "description": "Calculates the carbon dioxide evolution rate in a microbial culture.",
+    "variables": {
+      "CER": "Carbon dioxide evolution rate (mmol CO₂/L/h)",
+      "qCO2": "Specific CO₂ production rate (mmol CO₂/g biomass/h)",
+      "X": "Biomass concentration (g/L)"
+    },
+    "example": "If qCO2 = 1.5 mmol CO₂/g/h, X = 4 g/L, CER = 1.5 * 4 = 6 mmol CO₂/L/h.",
+    "category": "Respiration"
+  },
+  {
+    "name": "Respiratory Quotient (RQ)",
+    "formula": "RQ = CER / OUR",
+    "latex": "\\text{RQ} = \\frac{\\text{CER}}{\\text{OUR}}",
+    "description": "Calculates the respiratory quotient, the ratio of CO₂ produced to O₂ consumed.",
+    "variables": {
+      "RQ": "Respiratory quotient (dimensionless)",
+      "CER": "Carbon dioxide evolution rate (mmol CO₂/L/h)",
+      "OUR": "Oxygen uptake rate (mmol O₂/L/h)"
+    },
+    "example": "If CER = 6 mmol CO₂/L/h, OUR = 5 mmol O₂/L/h, RQ = 6/5 = 1.2.",
+    "category": "Respiration"
+  },
+  {
+    "name": "Yield on Oxygen (Yx/O2)",
+    "formula": "Yx/O2 = X / O2",
+    "latex": "Y_{x/O_2} = \\frac{X}{O_2}",
+    "description": "Calculates the biomass yield per unit of oxygen consumed.",
+    "variables": {
+      "Yx/O2": "Yield on oxygen (g biomass/mmol O₂)",
+      "X": "Biomass produced (g/L)",
+      "O2": "Oxygen consumed (mmol O₂/L)"
+    },
+    "example": "If X = 2 g/L, O2 = 10 mmol O₂/L, Yx/O2 = 2/10 = 0.2 g biomass/mmol O₂.",
+    "category": "Respiration"
+  },
+  {
+    "name": "Specific Substrate Uptake Rate (qs)",
+    "formula": "qs = (S0 - S) / (X * t)",
+    "latex": "q_s = \\frac{S_0 - S}{X \\cdot t}",
+    "description": "Calculates the specific rate of substrate uptake by biomass.",
+    "variables": {
+      "qs": "Specific substrate uptake rate (g substrate/g biomass/h)",
+      "S0": "Initial substrate concentration (g/L)",
+      "S": "Final substrate concentration (g/L)",
+      "X": "Biomass concentration (g/L)",
+      "t": "Time (hours)"
+    },
+    "example": "If S0 = 10 g/L, S = 2 g/L, X = 2 g/L, t = 4 h, qs = (10-2)/(2*4) = 1 g substrate/g biomass/h.",
+    "category": "Substrate Utilization"
+  },
+  {
+    "name": "Product Yield on Biomass (Yp/x)",
+    "formula": "Yp/x = P / X",
+    "latex": "Y_{p/x} = \\frac{P}{X}",
+    "description": "Calculates the product yield per unit of biomass produced.",
+    "variables": {
+      "Yp/x": "Product yield per biomass (g product/g biomass)",
+      "P": "Product concentration (g/L)",
+      "X": "Biomass concentration (g/L)"
+    },
+    "example": "If P = 5 g/L, X = 2 g/L, Yp/x = 5/2 = 2.5 g product/g biomass.",
+    "category": "Product Formation"
+  },
+  {
+    "name": "Monod-Haldane Equation",
+    "formula": "μ = (μ_max * S) / (Ks + S + (S^2 / Ki))",
+    "latex": "\\mu = \\frac{\\mu_{\\max} \\cdot S}{K_s + S + \\frac{S^2}{K_i}}",
+    "description": "Describes growth rate with substrate inhibition.",
+    "variables": {
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "μ_max": "Maximum specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "S": "Substrate concentration (g/L)",
+      "Ks": "Half-saturation constant (g/L)",
+      "Ki": "Inhibition constant (g/L)"
+    },
+    "example": "If μ_max = 0.8 h⁻¹, S = 2 g/L, Ks = 1 g/L, Ki = 10 g/L, μ = (0.8 * 2)/(1 + 2 + (2^2/10)) ≈ 0.516 h⁻¹.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Specific Product Uptake Rate",
+    "formula": "qp = (P0 - P) / (X * t)",
+    "latex": "q_p = \\frac{P_0 - P}{X \\cdot t}",
+    "description": "Calculates the specific rate of product uptake or degradation by biomass.",
+    "variables": {
+      "qp": "Specific product uptake rate (g product/g biomass/h)",
+      "P0": "Initial product concentration (g/L)",
+      "P": "Final product concentration (g/L)",
+      "X": "Biomass concentration (g/L)",
+      "t": "Time (hours)"
+    },
+    "example": "If P0 = 10 g/L, P = 4 g/L, X = 2 g/L, t = 3 h, qp = (10-4)/(2*3) = 1 g product/g biomass/h.",
+    "category": "Product Formation"
+  },
+  {
+    "name": "Substrate Conversion Efficiency",
+    "formula": "η = (S0 - S) / S0 * 100",
+    "latex": "\\eta = \\frac{S_0 - S}{S_0} \\cdot 100",
+    "description": "Calculates the percentage of substrate converted by the microbial culture.",
+    "variables": {
+      "η": "Substrate conversion efficiency (%)",
+      "S0": "Initial substrate concentration (g/L)",
+      "S": "Final substrate concentration (g/L)"
+    },
+    "example": "If S0 = 10 g/L, S = 3 g/L, η = (10-3)/10 * 100 = 70%.",
+    "category": "Substrate Utilization"
+  },
+  {
+    "name": "Biomass Productivity",
+    "formula": "Px = (X - X0) / t",
+    "latex": "P_x = \\frac{X - X_0}{t}",
+    "description": "Calculates the biomass productivity in a culture.",
+    "variables": {
+      "Px": "Biomass productivity (g/L/h)",
+      "X": "Final biomass concentration (g/L)",
+      "X0": "Initial biomass concentration (g/L)",
+      "t": "Time (hours)"
+    },
+    "example": "If X0 = 0.5 g/L, X = 5 g/L, t = 10 h, Px = (5-0.5)/10 = 0.45 g/L/h.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Specific Biomass Production Rate",
+    "formula": "qx = μ * X",
+    "latex": "q_x = \\mu \\cdot X",
+    "description": "Calculates the specific biomass production rate in a culture.",
+    "variables": {
+      "qx": "Specific biomass production rate (g/L/h)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "X": "Biomass concentration (g/L)"
+    },
+    "example": "If μ = 0.4 h⁻¹, X = 3 g/L, qx = 0.4 * 3 = 1.2 g/L/h.",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Substrate Inhibition Constant (Ki)",
+    "formula": "Ki = S^2 / ((μ_max / μ - 1) * Ks - S)",
+    "latex": "K_i = \\frac{S^2}{\\left( \\frac{\\mu_{\\max}}{\\mu} - 1 \\right) \\cdot K_s - S}",
+    "description": "Calculates the substrate inhibition constant in the Monod-Haldane model.",
+    "variables": {
+      "Ki": "Inhibition constant (g/L)",
+      "S": "Substrate concentration (g/L)",
+      "μ_max": "Maximum specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "Ks": "Half-saturation constant (g/L)"
+    },
+    "example": "If S = 2 g/L, μ_max = 0.8 h⁻¹, μ = 0.4 h⁻¹, Ks = 1 g/L, Ki = 2^2/((0.8/0.4-1)*1-2) = 4/(-1) = -4 g/L (indicating model limitations).",
+    "category": "Growth & Kinetics"
+  },
+  {
+    "name": "Oxygen Transfer Rate (OTR)",
+    "formula": "OTR = kLa * (C* - C)",
+    "latex": "\\text{OTR} = k_L a \\cdot (C^* - C)",
+    "description": "Calculates the oxygen transfer rate in a bioreactor.",
+    "variables": {
+      "OTR": "Oxygen transfer rate (mmol O₂/L/h)",
+      "kLa": "Volumetric oxygen transfer coefficient (h⁻¹)",
+      "C*": "Saturated oxygen concentration (mmol O₂/L)",
+      "C": "Actual oxygen concentration (mmol O₂/L)"
+    },
+    "example": "If kLa = 50 h⁻¹, C* = 0.2 mmol O₂/L, C = 0.05 mmol O₂/L, OTR = 50 * (0.2-0.05) = 7.5 mmol O₂/L/h.",
+    "category": "Respiration"
+  },
+  {
+    "name": "Critical Oxygen Concentration (Ccrit)",
+    "formula": "Ccrit = OUR / kLa",
+    "latex": "C_{\\text{crit}} = \\frac{\\text{OUR}}{k_L a}",
+    "description": "Calculates the critical oxygen concentration where oxygen becomes limiting.",
+    "variables": {
+      "Ccrit": "Critical oxygen concentration (mmol O₂/L)",
+      "OUR": "Oxygen uptake rate (mmol O₂/L/h)",
+      "kLa": "Volumetric oxygen transfer coefficient (h⁻¹)"
+    },
+    "example": "If OUR = 5 mmol O₂/L/h, kLa = 50 h⁻¹, Ccrit = 5/50 = 0.1 mmol O₂/L.",
+    "category": "Respiration"
+  },
+  {
+    "name": "Yield on Substrate for Maintenance (Ym)",
+    "formula": "Ym = μ / (qs - m)",
+    "latex": "Y_m = \\frac{\\mu}{q_s - m}",
+    "description": "Calculates the yield coefficient accounting for maintenance energy.",
+    "variables": {
+      "Ym": "Yield on substrate for maintenance (g biomass/g substrate)",
+      "μ": "Specific growth rate (time⁻¹, e.g., h⁻¹)",
+      "qs": "Specific substrate consumption rate (g substrate/g biomass/h)",
+      "m": "Maintenance coefficient (g substrate/g biomass/h)"
+    },
+    "example": "If μ = 0.5 h⁻¹, qs = 1.25 g substrate/g/h, m = 0.25 g substrate/g/h, Ym = 0.5/(1.25-0.25) = 0.5 g biomass/g substrate.",
+    "category": "Substrate Utilization"
+  },
+  {
+    "name": "Specific Glucose Uptake Rate",
+    "formula": "q_glu = (Glu0 - Glu) / (X * t)",
+    "latex": "q_{\\text{glu}} = \\frac{\\text{Glu}_0 - \\text{Glu}}{X \\cdot t}",
+    "description": "Calculates the specific glucose uptake rate by biomass.",
+    "variables": {
+      "q_glu": "Specific glucose uptake rate (g glucose/g biomass/h)",
+      "Glu0": "Initial glucose concentration (g/L)",
+      "Glu": "Final glucose concentration (g/L)",
+      "X": "Biomass concentration (g/L)",
+      "t": "Time (hours)"
+    },
+    "example": "If Glu0 = 20 g/L, Glu = 5 g/L, X = 3 g/L, t = 5 h, q_glu = (20-5)/(3*5) = 1 g glucose/g biomass/h.",
+    "category": "Substrate Utilization"
+  },
+  {
+    "name": "Chemostat Productivity",
+    "formula": "Px = D * X",
+    "latex": "P_x = D \\cdot X",
+    "description": "Calculates the biomass productivity in a chemostat.",
+    "variables": {
+      "Px": "Biomass productivity (g/L/h)",
+      "D": "Dilution rate (time⁻¹, e.g., h⁻¹)",
+      "X": "Biomass concentration (g/L)"
+    },
+    "example": "If D = 0.2 h⁻¹, X = 5 g/L, Px = 0.2 * 5 = 1 g/L/h.",
+    "category": "Continuous Culture"
+  },
+  {
+    "name": "Productivity in Fed-Batch Culture",
+    "formula": "Q = P / (V * t)",
+    "latex": "Q = \\frac{P}{V \\cdot t}",
+    "description": "Calculates the product productivity in a fed-batch culture.",
+    "variables": {
+      "Q": "Productivity (g/L/h)",
+      "P": "Product concentration (g)",
+      "V": "Culture volume (L)",
+      "t": "Time (hours)"
+    },
+    "example": "If P = 50 g, V = 10 L, t = 20 h, Q = 50/(10*20) = 0.25 g/L/h.",
+    "category": "Product Formation"
+  },
+  {
+    "name": "Biomass Yield on Nitrogen (Yx/N)",
+    "formula": "Yx/N = X / N",
+    "latex": "Y_{x/N} = \\frac{X}{N}",
+    "description": "Calculates the biomass yield per unit of nitrogen consumed.",
+    "variables": {
+      "Yx/N": "Biomass yield on nitrogen (g biomass/g nitrogen)",
+      "X": "Biomass produced (g/L)",
+      "N": "Nitrogen consumed (g/L)"
+    },
+    "example": "If X = 4 g/L, N = 0.5 g/L, Yx/N = 4/0.5 = 8 g biomass/g nitrogen.",
+    "category": "Nutrient Utilization"
+  },
+  {
+    "name": "Specific Nitrogen Uptake Rate",
+    "formula": "qN = (N0 - N) / (X * t)",
+    "latex": "q_N = \\frac{N_0 - N}{X \\cdot t}",
+    "description": "Calculates the specific nitrogen uptake rate by biomass.",
+    "variables": {
+      "qN": "Specific nitrogen uptake rate (g nitrogen/g biomass/h)",
+      "N0": "Initial nitrogen concentration (g/L)",
+      "N": "Final nitrogen concentration (g/L)",
+      "X": "Biomass concentration (g/L)",
+      "t": "Time (hours)"
+    },
+    "example": "If N0 = 1 g/L, N = 0.2 g/L, X = 2 g/L, t = 4 h, qN = (1-0.2)/(2*4) = 0.1 g nitrogen/g biomass/h.",
+    "category": "Nutrient Utilization"
+  }
+]

@@ -1,72 +1,112 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
+{% block title %}Manual Microbiology Input{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-    <h2>Manual Microbiology Analysis</h2>
+<div class="container my-5">
+    <h2 class="text-center mb-4">Manual Microbiology Data Analysis</h2>
 
-    <ul class="nav nav-tabs" id="formTabs" role="tablist">
-        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#growth">Growth Rate</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#inhibition">Zone of Inhibition</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cfu">CFU Calculation</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#diversity">Diversity Index</a></li>
-    </ul>
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
-    <div class="tab-content mt-3">
-        <div class="tab-pane fade show active" id="growth">
-            <form method="POST">
-                {{ growth_form.hidden_tag() }}
-                {{ render_field(growth_form.initial_population, class="form-control") }}
-                {{ render_field(growth_form.final_population, class="form-control") }}
-                {{ render_field(growth_form.time_start, class="form-control") }}
-                {{ render_field(growth_form.time_end, class="form-control") }}
-                {{ growth_form.submit(class="btn btn-primary mt-2") }}
-            </form>
-            {% if growth_form.submit.data and stats %}
-                <div class="mt-3 alert alert-info">
-                    <p><strong>Growth Rate:</strong> {{ stats.growth_rate | round(4) }}</p>
-                    <p><strong>Log Growth Rate:</strong> {{ stats.log_growth_rate | round(4) }}</p>
-                </div>
-            {% endif %}
+    <!-- Analysis Type Selector (GET form) -->
+    <form method="GET" class="mb-4">
+        <div class="mb-3">
+            <label for="analysis_type" class="form-label fw-bold">Select Analysis Type</label>
+            <select name="analysis_type" id="analysis_type" class="form-select" onchange="this.form.submit()">
+                <option value="" disabled {% if not selected_analysis %}selected{% endif %}>-- Choose Analysis --</option>
+                <option value="growth_stats" {% if selected_analysis == 'growth_stats' %}selected{% endif %}>Growth Rate & Doubling Time</option>
+                <option value="cfu_stats" {% if selected_analysis == 'cfu_stats' %}selected{% endif %}>CFU Count Statistics</option>
+                <option value="zone" {% if selected_analysis == 'zone' %}selected{% endif %}>Zone of Inhibition</option>
+                <option value="diversity" {% if selected_analysis == 'diversity' %}selected{% endif %}>Microbial Diversity Indices</option>
+                <option value="reed_muench" {% if selected_analyis == 'reed_muench' %}selected{% endif %}>Reed and Muench (TCID₅₀)</option>
+            </select>
         </div>
+    </form>
 
-        <div class="tab-pane fade" id="inhibition">
-            <form method="POST">
-                {{ inhibition_form.hidden_tag() }}
-                {{ render_field(inhibition_form.diameter, class="form-control") }}
-                {{ inhibition_form.submit(class="btn btn-primary mt-2") }}
-            </form>
-            {% if inhibition_form.submit.data and stats %}
-                <div class="mt-3 alert alert-info">
-                    <p><strong>Zone Diameter:</strong> {{ stats['Zone Diameter (mm)'] }}</p>
-                    <p><strong>Interpretation:</strong> {{ stats['Interpretation'] }}</p>
-                </div>
-            {% endif %}
-        </div>
+    <!-- Conditional Forms -->
+    {% if selected_analysis == 'growth_stats' %}
+    <form method="POST">
+        {{ growth_form.hidden_tag() }}
+        <input type="hidden" name="analysis_type" value="growth_stats">
+        <div class="mb-3">{{ growth_form.initial_population.label }} {{ growth_form.initial_population(class="form-control") }}</div>
+        <div class="mb-3">{{ growth_form.final_population.label }} {{ growth_form.final_population(class="form-control") }}</div>
+        <div class="mb-3">{{ growth_form.time_start.label }} {{ growth_form.time_start(class="form-control") }}</div>
+        <div class="mb-3">{{ growth_form.time_end.label }} {{ growth_form.time_end(class="form-control") }}</div>
+        {{ growth_form.submit(class="btn btn-primary w-100") }}
+    </form>
 
-        <div class="tab-pane fade" id="cfu">
-            <form method="POST">
-                {{ cfu_form.hidden_tag() }}
-                {{ render_field(cfu_form.colony_count, class="form-control") }}
-                {{ render_field(cfu_form.dilution_factor, class="form-control") }}
-                {{ render_field(cfu_form.volume_plated, class="form-control") }}
-                {{ cfu_form.submit(class="btn btn-primary mt-2") }}
-            </form>
-            {% if cfu_form.submit.data and table %}
-                <div class="mt-3 alert alert-success">{{ table|safe }}</div>
-            {% endif %}
-        </div>
+    {% elif selected_analysis == 'cfu_stats' %}
+    <form method="POST">
+        {{ cfu_form.hidden_tag() }}
+        <input type="hidden" name="analysis_type" value="cfu_stats">
+        <div class="mb-3">{{ cfu_form.colony_count.label }} {{ cfu_form.colony_count(class="form-control") }}</div>
+        <div class="mb-3">{{ cfu_form.dilution_factor.label }} {{ cfu_form.dilution_factor(class="form-control") }}</div>
+        <div class="mb-3">{{ cfu_form.volume_plated.label }} {{ cfu_form.volume_plated(class="form-control") }}</div>
+        {{ cfu_form.submit(class="btn btn-primary w-100") }}
+    </form>
 
-        <div class="tab-pane fade" id="diversity">
-            <form method="POST">
-                {{ diversity_form.hidden_tag() }}
-                {{ render_field(diversity_form.species_counts, class="form-control") }}
-                {{ render_field(diversity_form.method, class="form-control") }}
-                {{ diversity_form.submit(class="btn btn-primary mt-2") }}
-            </form>
-            {% if diversity_form.submit.data and table %}
-                <div class="mt-3">{{ table|safe }}</div>
-            {% endif %}
+    {% elif selected_analysis == 'zone' %}
+    <form method="POST">
+        {{ zone_form.hidden_tag() }}
+        <input type="hidden" name="analysis_type" value="zone">
+        <div class="mb-3">{{ zone_form.diameter.label }} {{ zone_form.diameter(class="form-control") }}</div>
+        {{ zone_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'diversity' %}
+    <form method="POST">
+        {{ diversity_form.hidden_tag() }}
+        <input type="hidden" name="analysis_type" value="diversity">
+        <div class="mb-3">{{ diversity_form.species_counts.label }} {{ diversity_form.species_counts(class="form-control") }}</div>
+        <div class="mb-3">{{ diversity_form.method.label }} {{ diversity_form.method(class="form-select") }}</div>
+        {{ diversity_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'reed_muench' %}
+    <form method="POST">
+        {{ reed_muench_form.hidden_tag() }}
+            <div class="form-group">
+                {{ reed_muench_form.dilutions.label }} {{ reed_muench_form.dilutions(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ reed_muench_form.infected.label }} {{ reed_muench_form.infected(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ reed_muench_form.total.label }} {{ reed_muench_form.total(class="form-control") }}
+            </div>
+            {{ reed_muench_form.submit(class="btn btn-primary mt-2") }}
+    </form>
+
+    {% endif %}
+
+    <!-- Results -->
+    {% if stats %}
+        <div class="mt-4">
+            <h5>Result Summary</h5>
+            <ul class="list-group">
+                {% for key, value in stats.items() %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong>{{ key }}</strong> <span>{{ value }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
-    </div>
+    {% endif %}
+
+    {% if table %}
+        <div class="mt-4">
+            <h5>Diversity Index Result</h5>
+            {{ table | safe }}
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
-

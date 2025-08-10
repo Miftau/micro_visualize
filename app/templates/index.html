@@ -1,33 +1,101 @@
-<!-- microhub_flask/app/templates/index.html -->
-{% extends "layout.html" %}
-
+{% extends "base.html" %}
 {% block content %}
-<h2>Microbiology Data Analysis</h2>
+<div class="container-main p-4">
+    <h2 class="mb-4 text-center">Microbiology Data Analysis</h2>
 
-<form method="POST" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
-    <div class="mb-3">
-        {{ form.file.label(class="form-label") }}
-        {{ form.file(class="form-control") }}
-        {% for error in form.file.errors %}
-            <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-    </div>
+    <form method="POST" enctype="multipart/form-data" class="mb-4">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            <label for="{{ form.file.name }}" class="form-label fw-bold">{{ form.file.label.text }}</label>
+            {{ form.file(class="form-control", accept=".csv,.xlsx") }}
+            <div class="form-text">Upload a CSV or Excel file containing microbiology data.</div>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.analysis_type.name }}" class="form-label fw-bold">{{ form.analysis_type.label.text }}</label>
+            {{ form.analysis_type(class="form-select", aria_describedby="analysisTypeHelp") }}
+            <div id="analysisTypeHelp" class="form-text">Select the type of analysis to perform on the uploaded data.</div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">{{ form.submit.label.text }}</button>
+    </form>
 
-    <div class="mb-3">
-        {{ form.analysis_type.label(class="form-label") }}
-        {{ form.analysis_type(class="form-select") }}
-    </div>
+    {% if result %}
+        <div class="card mt-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Analysis Result</h4>
+            </div>
+            <div class="card-body">
+                <p>{{ result }}</p>
+            </div>
+        </div>
+    {% endif %}
 
-    {{ form.submit(class="btn btn-primary") }}
-</form>
+    {% if plot_url %}
+        <div class="card mt-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Visualization</h4>
+            </div>
+            <div class="card-body text-center">
+                <img src="{{ plot_url }}" alt="Analysis Plot" class="img-fluid" style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+    {% endif %}
 
-{% if plot_url %}
-    <h4 class="mt-4">Analysis Result</h4>
-    <img src="{{ plot_url }}" class="img-fluid">
-{% elif table %}
-    <h4 class="mt-4">Prediction Result</h4>
-    {{ table|safe }}
-{% endif %}
+    {% if stats %}
+        <div class="card mt-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Statistics</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    {% for key, value in stats.items() %}
+                        <tr>
+                            <th>{{ key }}</th>
+                            <td>{{ value }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if ttest %}
+        <div class="card mt-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">T-Test Results</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    {% for key, value in ttest.items() %}
+                        <tr>
+                            <th>{{ key }}</th>
+                            <td>{{ value }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if table %}
+        <div class="card mt-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Results Table</h4>
+            </div>
+            <div class="card-body">
+                {{ table | safe }}
+            </div>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
