@@ -10,7 +10,6 @@ plotly
 scikit-learn           
 joblib                 
 statsmodels   
-pickle 
 numpy 
 streamlit
 scipy
