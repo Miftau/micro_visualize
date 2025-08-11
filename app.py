@@ -9,7 +9,7 @@ from markupsafe import Markup
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "dev_secret_key")
 app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(__file__), 'Uploads')
-from app.routes import bp
+from server.routes import bp
 app.register_blueprint(bp)
 
 def render_field(field, **kwargs):

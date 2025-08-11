@@ -4,8 +4,8 @@ import os
 import pandas as pd
 from .forms import *
 import json
-from app.utils.analysis import *
-from app.utils.predict import predict_resistance
+from server.utils.analysis import *
+from server.utils.predict import predict_resistance
 
 bp = Blueprint('main', __name__)
 UPLOAD_FOLDER = "uploads/"
