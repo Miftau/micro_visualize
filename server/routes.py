@@ -64,7 +64,7 @@ def index():
 
 @bp.route("/manual-input", methods=["GET", "POST"])
 def manual_input():
-    from .forms import AnalysisTypeForm, GrowthRateForm, CFUForm, ZoneOfInhibitionForm, DiversityIndexForm, ReedMuenchForm
+    from forms import AnalysisTypeForm, GrowthRateForm, CFUForm, ZoneOfInhibitionForm, DiversityIndexForm, ReedMuenchForm
 
     manual_analysis_type_form = AnalysisTypeForm()
     growth_form = GrowthRateForm()
