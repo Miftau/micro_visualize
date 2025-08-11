@@ -27,7 +27,24 @@
                 <option value="cfu_stats" {% if selected_analysis == 'cfu_stats' %}selected{% endif %}>CFU Count Statistics</option>
                 <option value="zone" {% if selected_analysis == 'zone' %}selected{% endif %}>Zone of Inhibition</option>
                 <option value="diversity" {% if selected_analysis == 'diversity' %}selected{% endif %}>Microbial Diversity Indices</option>
-                <option value="reed_muench" {% if selected_analyis == 'reed_muench' %}selected{% endif %}>Reed and Muench (TCID₅₀)</option>
+                <option value="reed_muench" {% if selected_analysis == 'reed_muench' %}selected{% endif %}>Reed and Muench (TCID₅₀)</option>
+                <option value="mic_manual" {% if selected_analysis == 'mic_manual' %}selected{% endif %}>Minimum Inhibitory Concentration (MIC)</option>
+                <option value="d_value_manual" {% if selected_analysis == 'd_value_manual' %}selected{% endif %}>D-Value Calculation</option>
+                <option value="z_value_manual" {% if selected_analysis == 'z_value_manual' %}selected{% endif %}>Z-Value Calculation</option>
+                <option value="lag_phase_manual" {% if selected_analysis == 'lag_phase_manual' %}selected{% endif %}>Lag Phase Estimation</option>
+                <option value="mu_max_manual" {% if selected_analysis == 'mu_max_manual' %}selected{% endif %}>Maximum Growth Rate (μmax)</option>
+                <option value="mbc_manual" {% if selected_analysis == 'mbc_manual' %}selected{% endif %}>Minimum Bactericidal Concentration (MBC)</option>
+                <option value="f_value_manual" {% if selected_analysis == 'f_value_manual' %}selected{% endif %}>F-Value Calculation</option>
+                <option value="synergy_testing_manual" {% if selected_analysis == 'synergy_testing_manual' %}selected{% endif %}>Synergy Testing</option>
+                <option value="mutation_frequency_manual" {% if selected_analysis == 'mutation_frequency_manual' %}selected{% endif %}>Mutation Frequency</option>
+                <option value="pfu_manual" {% if selected_analysis == 'pfu_manual' %}selected{% endif %}>Plaque Forming Units (PFU)</option>
+                <option value="spore_count_manual" {% if selected_analysis == 'spore_count_manual' %}selected{% endif %}>Spore Count</option>
+                <option value="viability_staining_manual" {% if selected_analysis == 'viability_staining_manual' %}selected{% endif %}>Viability Staining</option>
+                <option value="enzyme_activity_manual" {% if selected_analysis == 'enzyme_activity_manual' %}selected{% endif %}>Enzyme Activity</option>
+                <option value="protein_conc_manual" {% if selected_analysis == 'protein_conc_manual' %}selected{% endif %}>Protein Concentration</option>
+                <option value="dna_rna_conc_manual" {% if selected_analysis == 'dna_rna_conc_manual' %}selected{% endif %}>DNA/RNA Concentration</option>
+                <option value="hemagglutination_titer_manual" {% if selected_analysis == 'hemagglutination_titer_manual' %}selected{% endif %}>Hemagglutination Titer</option>
+                <option value="elisa_quant_manual" {% if selected_analysis == 'elisa_quant_manual' %}selected{% endif %}>ELISA Quantification</option>
             </select>
         </div>
     </form>
@@ -36,7 +53,7 @@
     {% if selected_analysis == 'growth_stats' %}
     <form method="POST">
         {{ growth_form.hidden_tag() }}
-        <input type="hidden" name="analysis_type" value="growth_stats">
+        <input type="hidden" name="manual_analysis_type" value="growth_stats">
         <div class="mb-3">{{ growth_form.initial_population.label }} {{ growth_form.initial_population(class="form-control") }}</div>
         <div class="mb-3">{{ growth_form.final_population.label }} {{ growth_form.final_population(class="form-control") }}</div>
         <div class="mb-3">{{ growth_form.time_start.label }} {{ growth_form.time_start(class="form-control") }}</div>
@@ -47,7 +64,7 @@
     {% elif selected_analysis == 'cfu_stats' %}
     <form method="POST">
         {{ cfu_form.hidden_tag() }}
-        <input type="hidden" name="analysis_type" value="cfu_stats">
+        <input type="hidden" name="manual_analysis_type" value="cfu_stats">
         <div class="mb-3">{{ cfu_form.colony_count.label }} {{ cfu_form.colony_count(class="form-control") }}</div>
         <div class="mb-3">{{ cfu_form.dilution_factor.label }} {{ cfu_form.dilution_factor(class="form-control") }}</div>
         <div class="mb-3">{{ cfu_form.volume_plated.label }} {{ cfu_form.volume_plated(class="form-control") }}</div>
@@ -57,7 +74,7 @@
     {% elif selected_analysis == 'zone' %}
     <form method="POST">
         {{ zone_form.hidden_tag() }}
-        <input type="hidden" name="analysis_type" value="zone">
+        <input type="hidden" name="manual_analysis_type" value="zone">
         <div class="mb-3">{{ zone_form.diameter.label }} {{ zone_form.diameter(class="form-control") }}</div>
         {{ zone_form.submit(class="btn btn-primary w-100") }}
     </form>
@@ -65,7 +82,7 @@
     {% elif selected_analysis == 'diversity' %}
     <form method="POST">
         {{ diversity_form.hidden_tag() }}
-        <input type="hidden" name="analysis_type" value="diversity">
+        <input type="hidden" name="manual_analysis_type" value="diversity">
         <div class="mb-3">{{ diversity_form.species_counts.label }} {{ diversity_form.species_counts(class="form-control") }}</div>
         <div class="mb-3">{{ diversity_form.method.label }} {{ diversity_form.method(class="form-select") }}</div>
         {{ diversity_form.submit(class="btn btn-primary w-100") }}
@@ -74,16 +91,169 @@
     {% elif selected_analysis == 'reed_muench' %}
     <form method="POST">
         {{ reed_muench_form.hidden_tag() }}
-            <div class="form-group">
-                {{ reed_muench_form.dilutions.label }} {{ reed_muench_form.dilutions(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ reed_muench_form.infected.label }} {{ reed_muench_form.infected(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ reed_muench_form.total.label }} {{ reed_muench_form.total(class="form-control") }}
-            </div>
-            {{ reed_muench_form.submit(class="btn btn-primary mt-2") }}
+        <input type="hidden" name="manual_analysis_type" value="reed_muench">
+        <div class="mb-3">{{ reed_muench_form.dilutions.label }} {{ reed_muench_form.dilutions(class="form-control") }}</div>
+        <div class="mb-3">{{ reed_muench_form.infected.label }} {{ reed_muench_form.infected(class="form-control") }}</div>
+        <div class="mb-3">{{ reed_muench_form.total.label }} {{ reed_muench_form.total(class="form-control") }}</div>
+        {{ reed_muench_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'mic_manual' %}
+    <form method="POST">
+        {{ mic_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="mic_manual">
+        <div class="mb-3">{{ mic_manual_form.concentrations.label }} {{ mic_manual_form.concentrations(class="form-control") }}</div>
+        <div class="mb-3">{{ mic_manual_form.growths.label }} {{ mic_manual_form.growths(class="form-control") }}</div>
+        {{ mic_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'd_value_manual' %}
+    <form method="POST">
+        {{ d_value_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="d_value_manual">
+        <div class="mb-3">{{ d_value_manual_form.times.label }} {{ d_value_manual_form.times(class="form-control") }}</div>
+        <div class="mb-3">{{ d_value_manual_form.log_cfus.label }} {{ d_value_manual_form.log_cfus(class="form-control") }}</div>
+        {{ d_value_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'z_value_manual' %}
+    <form method="POST">
+        {{ z_value_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="z_value_manual">
+        <div class="mb-3">{{ z_value_manual_form.temps.label }} {{ z_value_manual_form.temps(class="form-control") }}</div>
+        <div class="mb-3">{{ z_value_manual_form.d_values.label }} {{ z_value_manual_form.d_values(class="form-control") }}</div>
+        {{ z_value_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'lag_phase_manual' %}
+    <form method="POST">
+        {{ lag_phase_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="lag_phase_manual">
+        <div class="mb-3">{{ lag_phase_manual_form.times.label }} {{ lag_phase_manual_form.times(class="form-control") }}</div>
+        <div class="mb-3">{{ lag_phase_manual_form.ods.label }} {{ lag_phase_manual_form.ods(class="form-control") }}</div>
+        {{ lag_phase_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'mu_max_manual' %}
+    <form method="POST">
+        {{ mu_max_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="mu_max_manual">
+        <div class="mb-3">{{ mu_max_manual_form.times.label }} {{ mu_max_manual_form.times(class="form-control") }}</div>
+        <div class="mb-3">{{ mu_max_manual_form.ods.label }} {{ mu_max_manual_form.ods(class="form-control") }}</div>
+        {{ mu_max_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'mbc_manual' %}
+    <form method="POST">
+        {{ mbc_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="mbc_manual">
+        <div class="mb-3">{{ mbc_manual_form.concentrations.label }} {{ mbc_manual_form.concentrations(class="form-control") }}</div>
+        <div class="mb-3">{{ mbc_manual_form.viabilities.label }} {{ mbc_manual_form.viabilities(class="form-control") }}</div>
+        {{ mbc_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'f_value_manual' %}
+    <form method="POST">
+        {{ f_value_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="f_value_manual">
+        <div class="mb-3">{{ f_value_manual_form.times.label }} {{ f_value_manual_form.times(class="form-control") }}</div>
+        <div class="mb-3">{{ f_value_manual_form.temps.label }} {{ f_value_manual_form.temps(class="form-control") }}</div>
+        <div class="mb-3">{{ f_value_manual_form.ref_temp.label }} {{ f_value_manual_form.ref_temp(class="form-control") }}</div>
+        <div class="mb-3">{{ f_value_manual_form.z_value.label }} {{ f_value_manual_form.z_value(class="form-control") }}</div>
+        {{ f_value_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'synergy_testing_manual' %}
+    <form method="POST">
+        {{ synergy_testing_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="synergy_testing_manual">
+        <div class="mb-3">{{ synergy_testing_manual_form.drug_a_mic.label }} {{ synergy_testing_manual_form.drug_a_mic(class="form-control") }}</div>
+        <div class="mb-3">{{ synergy_testing_manual_form.drug_b_mic.label }} {{ synergy_testing_manual_form.drug_b_mic(class="form-control") }}</div>
+        <div class="mb-3">{{ synergy_testing_manual_form.combo_mic_a.label }} {{ synergy_testing_manual_form.combo_mic_a(class="form-control") }}</div>
+        <div class="mb-3">{{ synergy_testing_manual_form.combo_mic_b.label }} {{ synergy_testing_manual_form.combo_mic_b(class="form-control") }}</div>
+        {{ synergy_testing_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'mutation_frequency_manual' %}
+    <form method="POST">
+        {{ mutation_frequency_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="mutation_frequency_manual">
+        <div class="mb-3">{{ mutation_frequency_manual_form.mutants.label }} {{ mutation_frequency_manual_form.mutants(class="form-control") }}</div>
+        <div class="mb-3">{{ mutation_frequency_manual_form.total.label }} {{ mutation_frequency_manual_form.total(class="form-control") }}</div>
+        {{ mutation_frequency_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'pfu_manual' %}
+    <form method="POST">
+        {{ pfu_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="pfu_manual">
+        <div class="mb-3">{{ pfu_manual_form.plaques.label }} {{ pfu_manual_form.plaques(class="form-control") }}</div>
+        <div class="mb-3">{{ pfu_manual_form.dilution.label }} {{ pfu_manual_form.dilution(class="form-control") }}</div>
+        <div class="mb-3">{{ pfu_manual_form.volume.label }} {{ pfu_manual_form.volume(class="form-control") }}</div>
+        {{ pfu_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'spore_count_manual' %}
+    <form method="POST">
+        {{ spore_count_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="spore_count_manual">
+        <div class="mb-3">{{ spore_count_manual_form.spores.label }} {{ spore_count_manual_form.spores(class="form-control") }}</div>
+        <div class="mb-3">{{ spore_count_manual_form.total.label }} {{ spore_count_manual_form.total(class="form-control") }}</div>
+        {{ spore_count_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'viability_staining_manual' %}
+    <form method="POST">
+        {{ viability_staining_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="viability_staining_manual">
+        <div class="mb-3">{{ viability_staining_manual_form.live.label }} {{ viability_staining_manual_form.live(class="form-control") }}</div>
+        <div class="mb-3">{{ viability_staining_manual_form.dead.label }} {{ viability_staining_manual_form.dead(class="form-control") }}</div>
+        {{ viability_staining_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'enzyme_activity_manual' %}
+    <form method="POST">
+        {{ enzyme_activity_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="enzyme_activity_manual">
+        <div class="mb-3">{{ enzyme_activity_manual_form.times.label }} {{ enzyme_activity_manual_form.times(class="form-control") }}</div>
+        <div class="mb-3">{{ enzyme_activity_manual_form.products.label }} {{ enzyme_activity_manual_form.products(class="form-control") }}</div>
+        {{ enzyme_activity_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'protein_conc_manual' %}
+    <form method="POST">
+        {{ protein_conc_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="protein_conc_manual">
+        <div class="mb-3">{{ protein_conc_manual_form.absorbance.label }} {{ protein_conc_manual_form.absorbance(class="form-control") }}</div>
+        <div class="mb-3">{{ protein_conc_manual_form.factor.label }} {{ protein_conc_manual_form.factor(class="form-control") }}</div>
+        {{ protein_conc_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'dna_rna_conc_manual' %}
+    <form method="POST">
+        {{ dna_rna_conc_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="dna_rna_conc_manual">
+        <div class="mb-3">{{ dna_rna_conc_manual_form.a260.label }} {{ dna_rna_conc_manual_form.a260(class="form-control") }}</div>
+        <div class="mb-3">{{ dna_rna_conc_manual_form.factor.label }} {{ dna_rna_conc_manual_form.factor(class="form-control") }}</div>
+        {{ dna_rna_conc_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'hemagglutination_titer_manual' %}
+    <form method="POST">
+        {{ hemagglutination_titer_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="hemagglutination_titer_manual">
+        <div class="mb-3">{{ hemagglutination_titer_manual_form.dilutions.label }} {{ hemagglutination_titer_manual_form.dilutions(class="form-control") }}</div>
+        <div class="mb-3">{{ hemagglutination_titer_manual_form.agglutinations.label }} {{ hemagglutination_titer_manual_form.agglutinations(class="form-control") }}</div>
+        {{ hemagglutination_titer_manual_form.submit(class="btn btn-primary w-100") }}
+    </form>
+
+    {% elif selected_analysis == 'elisa_quant_manual' %}
+    <form method="POST">
+        {{ elisa_quant_manual_form.hidden_tag() }}
+        <input type="hidden" name="manual_analysis_type" value="elisa_quant_manual">
+        <div class="mb-3">{{ elisa_quant_manual_form.absorbances.label }} {{ elisa_quant_manual_form.absorbances(class="form-control") }}</div>
+        <div class="mb-3">{{ elisa_quant_manual_form.standard_concs.label }} {{ elisa_quant_manual_form.standard_concs(class="form-control") }}</div>
+        {{ elisa_quant_manual_form.submit(class="btn btn-primary w-100") }}
     </form>
 
     {% endif %}
@@ -95,7 +265,14 @@
             <ul class="list-group">
                 {% for key, value in stats.items() %}
                     <li class="list-group-item d-flex justify-content-between">
-                        <strong>{{ key }}</strong> <span>{{ value }}</span>
+                        <strong>{{ key }}</strong> 
+                        <span>
+                            {% if value is iterable and value is not string %}
+                                {{ value|join(', ') }}
+                            {% else %}
+                                {{ value }}
+                            {% endif %}
+                        </span>
                     </li>
                 {% endfor %}
             </ul>
@@ -104,7 +281,7 @@
 
     {% if table %}
         <div class="mt-4">
-            <h5>Diversity Index Result</h5>
+            <h5>Detailed Results</h5>
             {{ table | safe }}
         </div>
     {% endif %}
