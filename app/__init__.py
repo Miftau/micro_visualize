@@ -32,4 +32,3 @@ def create_app():
     from .routes import bp
     app.register_blueprint(bp)
 
-    return app
