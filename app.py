@@ -1,4 +1,3 @@
-
 from flask import Flask, Blueprint
 from flask_wtf.csrf import CSRFProtect
 import os
