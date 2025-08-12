@@ -8,9 +8,25 @@ from .forms import *
 import json
 from server.utils.analysis import *
 from server.utils.predict import predict_resistance  # Assume exists
+from collections import defaultdict
 
 bp = Blueprint('main', __name__)
 UPLOAD_FOLDER = "uploads/"
+
+# Load microorganisms data from file
+def load_organisms():
+    file_path = os.path.join(os.path.dirname(__file__), "organisms.json")
+    with open(file_path, "r") as f:
+        return json.load(f)
+
+def group_microorganisms(data):
+    grouped = defaultdict(lambda: defaultdict(list))
+    for microbe in data:
+        micro_type = microbe.get("type", "Unknown")
+        category = microbe.get("category", "Uncategorized")
+        grouped[micro_type][category].append(microbe)
+    return grouped
+
 
 def load_formulas():
     file_path = os.path.join(os.path.dirname(__file__), "formulas.json")
@@ -365,7 +381,6 @@ def manual_input():
         dna_rna_conc_manual_form=dna_rna_conc_manual_form,
         hemagglutination_titer_manual_form=hemagglutination_titer_manual_form,
         elisa_quant_manual_form=elisa_quant_manual_form,
-        # Add more
         selected_analysis=selected_analysis,
         stats=stats,
         table=table,
@@ -388,6 +403,46 @@ def show_formulas():
     return render_template("formulas.html", categories=categories)
 
 
+@bp.route("/microorganisms", methods=["GET"])
+def list_microorganisms():
+    microorganisms = load_organisms()
+    search_query = request.args.get("search", "").lower().strip()
 
+    # Normalize microorganism data
+    for microorganism in microorganisms:
+        # Ensure characteristics are dictionaries
+        for field in [ "morphology", "biochemical", "staining_characteristics", "growth_conditions",
+                       "virulence_factors",
+                       "clinical_significance",
+                        "other_characteristics",
+                      ]:
+            if not isinstance(microorganism.get(field), dict):
+                microorganism[field] = {}
 
+    # Filter by search term
+    if search_query:
+        filtered = [
+            m for m in microorganisms
+            if search_query in m["name"].lower()
+            or any(search_query in str(v).lower() for v in m.get("morphology", {}).values())
+            or any(search_query in str(v).lower() for v in m.get("biochemical", {}).values())
+            or any(search_query in str(v).lower() for v in m.get("growth_conditions", {}).values())
+            or any(search_query in str(v).lower() for v in m.get("virulence_factors", {}).values())
+            or any(search_query in str(v).lower() for v in m.get("staining_characteristics", {}).values())
+            or any(search_query in str(v).lower() for v in m.get("clinical_significance", {}).values())
+            or any(search_query in str(v).lower() for v in m.get("other_characteristics", {}).values())
+        ]
+    else:
+        filtered = microorganisms
+
+    # Group filtered microorganisms by category for simple category listing
+    categories = defaultdict(list)
+    for microorganism in filtered:
+        category = microorganism.get("category", "Other")
+        categories[category].append(microorganism)
+
+    # Group filtered microorganisms by type and category for detailed grouping
+    grouped_data = group_microorganisms(filtered)
+
+    return render_template("microorganisms.html", categories=categories, grouped_data=grouped_data, search_query=search_query)
 
