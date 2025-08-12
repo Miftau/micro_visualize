@@ -338,90 +338,6 @@
     "clinical_significance": "Listeriosis, meningitis, septicemia in neonates and immunocompromised"
   },
   {
-    "id": 9,
-    "name": "Klebsiella pneumoniae",
-    "type": "Bacteria",
-    "category": "Gram Negative Bacilli - Enterobacteriaceae",
-    "gram_stain": "Negative",
-    "morphology": {
-      "shape": "Rod",
-      "arrangement": "Single",
-      "size": "1-2 μm length, 0.5-0.8 μm diameter",
-      "motility": "Non-motile",
-      "capsule": "Thick polysaccharide capsule",
-      "spores": "Non-spore forming"
-    },
-    "biochemical": {
-      "oxidase": "Negative",
-      "catalase": "Positive",
-      "indole": "Negative",
-      "methyl_red": "Negative",
-      "vp": "Positive",
-      "citrate": "Positive",
-      "urease": "Positive",
-      "h2s_production": "Negative",
-      "tsi": "A/A, gas +, H2S -",
-      "of_glucose": "Fermentative",
-      "lactose_fermentation": "Positive",
-      "motility_test": "Negative"
-    },
-    "growth_conditions": {
-      "temperature_range": "10-42°C",
-      "optimal_temp": "37°C",
-      "oxygen": "Facultative anaerobe",
-      "macconkey": "Pink, mucoid colonies",
-      "blood_agar": "Large, mucoid colonies, non-hemolytic"
-    },
-    "virulence_factors": [
-      "Capsule",
-      "Endotoxin (LPS)",
-      "Siderophores"
-    ],
-    "clinical_significance": "Pneumonia, UTIs, bacteremia, hospital-acquired infections"
-  },
-  {
-    "id": 10,
-    "name": "Salmonella enterica",
-    "type": "Bacteria",
-    "category": "Gram Negative Bacilli - Enterobacteriaceae",
-    "gram_stain": "Negative",
-    "morphology": {
-      "shape": "Rod",
-      "arrangement": "Single",
-      "size": "1-3 μm length, 0.5-0.8 μm diameter",
-      "motility": "Motile (peritrichous flagella)",
-      "capsule": "Vi antigen in some strains",
-      "spores": "Non-spore forming"
-    },
-    "biochemical": {
-      "oxidase": "Negative",
-      "catalase": "Positive",
-      "indole": "Negative",
-      "methyl_red": "Positive",
-      "vp": "Negative",
-      "citrate": "Positive",
-      "urease": "Negative",
-      "h2s_production": "Positive",
-      "tsi": "K/A, gas +, H2S +",
-      "of_glucose": "Fermentative",
-      "lactose_fermentation": "Negative",
-      "motility_test": "Positive"
-    },
-    "growth_conditions": {
-      "temperature_range": "15-43°C",
-      "optimal_temp": "37°C",
-      "oxygen": "Facultative anaerobe",
-      "macconkey": "Pale colonies (non-lactose fermenter)",
-      "blood_agar": "Smooth, moist colonies, usually non-hemolytic"
-    },
-    "virulence_factors": [
-      "Type III secretion system",
-      "Vi antigen",
-      "Endotoxin"
-    ],
-    "clinical_significance": "Typhoid fever, gastroenteritis, bacteremia"
-  },
-  {
     "id": 11,
     "name": "Streptococcus pyogenes",
     "category": "Bacteria - Gram Positive Cocci",
@@ -505,24 +421,6 @@
     }
   },
   {
-    "id": 16,
-    "name": "Klebsiella pneumoniae",
-    "category": "Bacteria - Gram Negative Rods",
-    "morphology": "Short, plump rods",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Negative",
-      "lactose_fermentation": "Positive",
-      "urease": "Positive",
-      "indole": "Negative"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Facultative anaerobe",
-      "capsule": "Thick polysaccharide capsule",
-      "pathogenicity": "Pneumonia, urinary tract infections"
-    }
-  },
-  {
     "id": 17,
     "name": "Shigella dysenteriae",
     "category": "Bacteria - Gram Negative Rods",
@@ -554,192 +452,6 @@
     "other_characteristics": {
       "oxygen_requirement": "Facultative anaerobe",
       "pathogenicity": "Typhoid fever"
-    }
-  },
-  {
-    "id": 19,
-    "name": "Pseudomonas aeruginosa",
-    "category": "Bacteria - Gram Negative Rods",
-    "morphology": "Straight or slightly curved rods",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Positive",
-      "lactose_fermentation": "Negative",
-      "pyocyanin_production": "Positive"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Obligate aerobe",
-      "pigment": "Blue-green pigment",
-      "pathogenicity": "Opportunistic infections in burns, CF"
-    }
-  },
-  {
-    "id": 20,
-    "name": "Vibrio cholerae",
-    "category": "Bacteria - Gram Negative Curved Rods",
-    "morphology": "Comma-shaped rods",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Positive",
-      "glucose_fermentation": "Positive",
-      "lactose_fermentation": "Negative"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Facultative anaerobe",
-      "motility": "Single polar flagellum",
-      "pathogenicity": "Cholera"
-    }
-  },
-  {
-    "id": 11,
-    "name": "Streptococcus pyogenes",
-    "category": "Bacteria - Gram Positive Cocci",
-    "morphology": "Chains of spherical cells",
-    "staining": "Gram-positive",
-    "biochemical": {
-      "catalase": "Negative",
-      "hemolysis": "Beta",
-      "bacitracin_sensitivity": "Sensitive",
-      "PYR": "Positive"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Facultative anaerobe",
-      "pathogenicity": "Causes strep throat, scarlet fever, rheumatic fever"
-    }
-  },
-  {
-    "id": 12,
-    "name": "Streptococcus pneumoniae",
-    "category": "Bacteria - Gram Positive Cocci",
-    "morphology": "Lancet-shaped diplococci",
-    "staining": "Gram-positive",
-    "biochemical": {
-      "catalase": "Negative",
-      "optochin_sensitivity": "Sensitive",
-      "bile_solubility": "Positive"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Facultative anaerobe",
-      "capsule": "Polysaccharide capsule",
-      "pathogenicity": "Causes pneumonia, meningitis, otitis media"
-    }
-  },
-  {
-    "id": 13,
-    "name": "Streptococcus agalactiae",
-    "category": "Bacteria - Gram Positive Cocci",
-    "morphology": "Chains of spherical cells",
-    "staining": "Gram-positive",
-    "biochemical": {
-      "catalase": "Negative",
-      "hemolysis": "Beta",
-      "CAMP_test": "Positive"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Facultative anaerobe",
-      "pathogenicity": "Neonatal sepsis, meningitis"
-    }
-  },
-  {
-    "id": 14,
-    "name": "Neisseria gonorrhoeae",
-    "category": "Bacteria - Gram Negative Cocci",
-    "morphology": "Kidney-shaped diplococci",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Positive",
-      "glucose_utilization": "Positive",
-      "maltose_utilization": "Negative"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Gonorrhea, neonatal conjunctivitis"
-    }
-  },
-  {
-    "id": 15,
-    "name": "Neisseria meningitidis",
-    "category": "Bacteria - Gram Negative Cocci",
-    "morphology": "Kidney-shaped diplococci",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Positive",
-      "glucose_utilization": "Positive",
-      "maltose_utilization": "Positive"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "capsule": "Polysaccharide capsule",
-      "pathogenicity": "Meningitis, septicemia"
-    }
-  },
-  {
-    "id": 16,
-    "name": "Klebsiella pneumoniae",
-    "category": "Bacteria - Gram Negative Rods",
-    "morphology": "Short, plump rods",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Negative",
-      "lactose_fermentation": "Positive",
-      "urease": "Positive",
-      "indole": "Negative"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Facultative anaerobe",
-      "capsule": "Thick polysaccharide capsule",
-      "pathogenicity": "Pneumonia, urinary tract infections"
-    }
-  },
-  {
-    "id": 17,
-    "name": "Shigella dysenteriae",
-    "category": "Bacteria - Gram Negative Rods",
-    "morphology": "Short rods",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Negative",
-      "lactose_fermentation": "Negative",
-      "H2S_production": "Negative",
-      "urease": "Negative"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Facultative anaerobe",
-      "pathogenicity": "Bacillary dysentery"
-    }
-  },
-  {
-    "id": 18,
-    "name": "Salmonella Typhi",
-    "category": "Bacteria - Gram Negative Rods",
-    "morphology": "Short rods",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Negative",
-      "lactose_fermentation": "Negative",
-      "H2S_production": "Positive",
-      "urease": "Negative"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Facultative anaerobe",
-      "pathogenicity": "Typhoid fever"
-    }
-  },
-  {
-    "id": 19,
-    "name": "Pseudomonas aeruginosa",
-    "category": "Bacteria - Gram Negative Rods",
-    "morphology": "Straight or slightly curved rods",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Positive",
-      "lactose_fermentation": "Negative",
-      "pyocyanin_production": "Positive"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Obligate aerobe",
-      "pigment": "Blue-green pigment",
-      "pathogenicity": "Opportunistic infections in burns, CF"
     }
   },
   {
@@ -909,40 +621,13 @@
     "other_characteristics": "Facultative anaerobe, common in soil and foodborne illnesses, causes diarrhea or emetic syndrome"
   },
   {
-    "id": 32,
-    "name": "Streptococcus agalactiae",
-    "category": "Bacteria",
-    "morphology": "Gram-positive cocci in chains",
-    "staining_characteristics": "Gram-positive, non-spore forming",
-    "biochemical": "Catalase negative, CAMP test positive, beta-hemolytic",
-    "other_characteristics": "Group B Streptococcus, common cause of neonatal infections"
-  },
-  {
-    "id": 33,
-    "name": "Listeria monocytogenes",
-    "category": "Bacteria",
-    "morphology": "Small Gram-positive rods, tumbling motility at 25°C",
-    "staining_characteristics": "Gram-positive, non-spore forming",
-    "biochemical": "Catalase positive, oxidase negative, beta-hemolytic",
-    "other_characteristics": "Facultative intracellular pathogen, grows at refrigeration temperatures, foodborne pathogen"
-  },
-  {
-    "id": 34,
-    "name": "Escherichia coli O157:H7",
-    "category": "Bacteria",
-    "morphology": "Gram-negative rods",
-    "staining_characteristics": "Gram-negative, non-spore forming",
-    "biochemical": "Indole positive, sorbitol fermentation negative (distinguishes from most E. coli)",
-    "other_characteristics": "Produces Shiga toxin, causes hemorrhagic colitis and hemolytic uremic syndrome"
-  },
-  {
     "id": 35,
     "name": "Mycoplasma pneumoniae",
     "category": "Bacteria",
     "morphology": "Lacks cell wall, pleomorphic",
     "staining_characteristics": "Not visible with Gram stain, requires DNA stains",
     "biochemical": "Glucose fermenter, urease negative",
-    "other_characteristics": "Causative agent of atypical pneumonia, requires specialized media (Eaton’s agar)"
+    "other_characteristics": "Causative agent of atypical pneumonia, requires specialized media (Eaton's agar)"
   },
   {
     "id": 36,
@@ -952,15 +637,6 @@
     "staining_characteristics": "Gram-negative, better visualized with Giemsa or Gimenez stain",
     "biochemical": "Obligate intracellular parasite, not grown on standard media",
     "other_characteristics": "Causes Rocky Mountain spotted fever, transmitted by ticks"
-  },
-  {
-    "id": 37,
-    "name": "Yersinia pestis",
-    "category": "Bacteria",
-    "morphology": "Gram-negative coccobacilli, bipolar staining (safety-pin appearance)",
-    "staining_characteristics": "Gram-negative, bipolar staining with Wright or Giemsa stain",
-    "biochemical": "Catalase positive, oxidase negative, urease negative",
-    "other_characteristics": "Causative agent of plague, transmitted by fleas"
   },
   {
     "id": 38,
@@ -989,30 +665,14 @@
     "biochemical": "Urease positive, oxidase positive, catalase positive",
     "other_characteristics": "Causes gastritis, peptic ulcers, and is associated with gastric cancer"
   },
-    {
-        "id": 41,
-        "name": "Clostridium difficile",
-        "category": "Bacteria",
-        "morphology": "Gram-positive rods, spore-forming, anaerobic",
-        "staining_characteristics": "Gram-positive, spores visible with special stains",
-        "biochemical": "Catalase negative, urease negative, produces toxins A and B",
-        "other_characteristics": "Causes antibiotic-associated diarrhea and pseudomembranous colitis"
-    },
   {
-    "id": 42,
+    "id": 41,
     "name": "Clostridium difficile",
-    "category": "Bacteria - Gram Positive Bacilli",
-    "morphology": "Large, straight rods",
-    "staining": "Gram-positive",
-    "biochemical": {
-      "catalase": "Negative",
-      "spore_formation": "Positive",
-      "toxin_production": "Positive (toxins A and B)"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Obligate anaerobe",
-      "pathogenicity": "Pseudomembranous colitis, antibiotic-associated diarrhea"
-    }
+    "category": "Bacteria",
+    "morphology": "Gram-positive rods, spore-forming, anaerobic",
+    "staining_characteristics": "Gram-positive, spores visible with special stains",
+    "biochemical": "Catalase negative, urease negative, produces toxins A and B",
+    "other_characteristics": "Causes antibiotic-associated diarrhea and pseudomembranous colitis"
   },
   {
     "id": 43,
@@ -1093,22 +753,6 @@
     }
   },
   {
-    "id": 48,
-    "name": "Helicobacter pylori",
-    "category": "Bacteria - Gram Negative Curved Rods",
-    "morphology": "Spiral or curved rods",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Positive",
-      "urease": "Positive",
-      "catalase": "Positive"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Microaerophilic",
-      "pathogenicity": "Gastric ulcers, gastritis"
-    }
-  },
-  {
     "id": 49,
     "name": "Campylobacter jejuni",
     "category": "Bacteria - Gram Negative Curved Rods",
@@ -1141,21 +785,6 @@
     }
   },
   {
-    "id": 51,
-    "name": "Bordetella pertussis",
-    "category": "Bacteria - Gram Negative Coccobacilli",
-    "morphology": "Small coccobacilli",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Positive",
-      "urease": "Negative"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Whooping cough"
-    }
-  },
-  {
     "id": 52,
     "name": "Chlamydia trachomatis",
     "category": "Bacteria - Intracellular",
@@ -1167,18 +796,6 @@
     "other_characteristics": {
       "oxygen_requirement": "Obligate intracellular",
       "pathogenicity": "Chlamydia, trachoma, lymphogranuloma venereum"
-    }
-  },
-  {
-    "id": 53,
-    "name": "Rickettsia rickettsii",
-    "category": "Bacteria - Intracellular",
-    "morphology": "Small rods or cocci",
-    "staining": "Gram-negative (poorly stained)",
-    "biochemical": {},
-    "other_characteristics": {
-      "oxygen_requirement": "Obligate intracellular",
-      "pathogenicity": "Rocky Mountain spotted fever"
     }
   },
   {
@@ -1273,21 +890,6 @@
     }
   },
   {
-    "id": 60,
-    "name": "Francisella tularensis",
-    "category": "Bacteria - Gram Negative Coccobacilli",
-    "morphology": "Small coccobacilli",
-    "staining": "Gram-negative",
-    "biochemical": {
-      "oxidase": "Negative",
-      "catalase": "Weak positive"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Tularemia"
-    }
-  },
-  {
     "id": 61,
     "name": "Brucella melitensis",
     "category": "Bacteria - Gram Negative Coccobacilli",
@@ -1313,108 +915,7 @@
     },
     "other_characteristics": {
       "oxygen_requirement": "Facultative anaerobe",
-      "pathogenicity": "Urinary tract infections, candidemia"
-    }
-  },
-  {
-    "id": 63,
-    "name": "Blastomyces dermatitidis",
-    "category": "Fungi - Dimorphic",
-    "morphology": "Yeast in tissue, mold in environment",
-    "staining": "Giemsa stain",
-    "biochemical": {},
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Blastomycosis"
-    }
-  },
-  {
-    "id": 64,
-    "name": "Coccidioides immitis",
-    "category": "Fungi - Dimorphic",
-    "morphology": "Spherules in tissue, mold in environment",
-    "staining": "PAS stain",
-    "biochemical": {},
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Valley fever"
-    }
-  },
-  {
-    "id": 65,
-    "name": "Rhizopus oryzae",
-    "category": "Fungi - Mold",
-    "morphology": "Non-septate hyphae",
-    "staining": "Silver stain",
-    "biochemical": {},
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Mucormycosis"
-    }
-  },
-  {
-    "id": 66,
-    "name": "Trichophyton rubrum",
-    "category": "Fungi - Mold",
-    "morphology": "Septate hyphae, microconidia",
-    "staining": "KOH prep",
-    "biochemical": {},
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Athlete's foot, ringworm"
-    }
-  },
-  {
-    "id": 67,
-    "name": "Sporothrix schenckii",
-    "category": "Fungi - Dimorphic",
-    "morphology": "Cigar-shaped yeast in tissue, mold in environment",
-    "staining": "Giemsa stain",
-    "biochemical": {},
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Sporotrichosis"
-    }
-  },
-  {
-    "id": 68,
-    "name": "Pneumocystis jirovecii",
-    "category": "Fungi - Yeast-like",
-    "morphology": "Cysts and trophozoites",
-    "staining": "Giemsa or silver stain",
-    "biochemical": {},
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Pneumocystis pneumonia in immunocompromised"
-    }
-  },
-  {
-    "id": 69,
-    "name": "Actinomyces israelii",
-    "category": "Bacteria - Gram Positive Bacilli",
-    "morphology": "Branching, filamentous rods",
-    "staining": "Gram-positive",
-    "biochemical": {
-      "catalase": "Negative"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Anaerobe",
-      "pathogenicity": "Actinomycosis"
-    }
-  },
-  {
-    "id": 70,
-    "name": "Nocardia asteroides",
-    "category": "Bacteria - Gram Positive Bacilli",
-    "morphology": "Branching, filamentous rods",
-    "staining": "Gram-positive, partially acid-fast",
-    "biochemical": {
-      "catalase": "Positive"
-    },
-    "other_characteristics": {
-      "oxygen_requirement": "Aerobe",
-      "pathogenicity": "Nocardiosis"
+      "pathogenicity": "Urinary tract infections, bloodstream infections"
     }
   }
-
 ]
