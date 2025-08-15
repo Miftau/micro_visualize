@@ -147,14 +147,7 @@ def index():
                 elif analysis_type == "susceptibility_profile_stats":
                     table = susceptibility_profile_stats(df).to_html(classes="table table-bordered")
                 
-                # Make file downloadable
-                file_stream.seek(0)  # Reset stream position
-                return send_file(
-                    file_stream,
-                    as_attachment=True,
-                    download_name=file.filename,
-                    mimetype='application/octet-stream'
-                )
+
             except Exception as e:
                 flash(f"Error processing file: {str(e)}", "danger")
         else:
