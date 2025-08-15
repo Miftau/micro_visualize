@@ -39,7 +39,8 @@
       "Pili for adhesion",
       "Some strains produce enterotoxins"
     ],
-    "clinical_significance": "Normal gut flora, UTI, diarrhea, sepsis"
+    "clinical_significance": "Normal gut flora, UTI, diarrhea, sepsis",
+    "image": "https://commons.wikimedia.org/wiki/File:E._coli_Bacteria_(7316101966).jpg"
   },
   {
     "id": 2,
@@ -82,7 +83,8 @@
       "Hemolysins",
       "Enterotoxins"
     ],
-    "clinical_significance": "Skin infections, pneumonia, food poisoning, sepsis"
+    "clinical_significance": "Skin infections, pneumonia, food poisoning, sepsis",
+    "image": "https://commons.wikimedia.org/wiki/File:Staphylococcus_aureus_01.jpg" 
   },
   {
     "id": 3,
@@ -125,7 +127,8 @@
       "Biofilm formation",
       "Pyocyanin pigment"
     ],
-    "clinical_significance": "Opportunistic pathogen, causes pneumonia, burns infection, UTIs"
+    "clinical_significance": "Opportunistic pathogen, causes pneumonia, burns infection, UTIs",
+    "image": "https://commons.wikimedia.org/wiki/File:Pseudomonas_aeruginosa_01.jpg"
   },
   {
     "id": 4,
@@ -167,7 +170,8 @@
       "Endotoxin (LPS)",
       "Siderophores"
     ],
-    "clinical_significance": "Pneumonia, UTIs, bacteremia, hospital-acquired infections"
+    "clinical_significance": "Pneumonia, UTIs, bacteremia, hospital-acquired infections",
+    "image": "https://commons.wikimedia.org/wiki/File:Klebsiella_pneumoniae_01.png"
   },
   {
     "id": 5,
@@ -209,7 +213,8 @@
       "Vi antigen",
       "Endotoxin"
     ],
-    "clinical_significance": "Typhoid fever, gastroenteritis, bacteremia"
+    "clinical_significance": "Typhoid fever, gastroenteritis, bacteremia",
+    "image": "https://commons.wikimedia.org/wiki/File:Salmonella_enteritidis-DCA.jpg"
   },
   {
     "id": 6,
@@ -251,7 +256,8 @@
       "Fimbriae",
       "Hemolysins"
     ],
-    "clinical_significance": "UTIs, kidney stones, wound infections"
+    "clinical_significance": "UTIs, kidney stones, wound infections",
+    "image": "https://commons.wikimedia.org/wiki/File:Proteus_mirabilis_01.jpg"
   },
   {
     "id": 7,
@@ -293,7 +299,8 @@
       "Cytolysin",
       "Gelatinase"
     ],
-    "clinical_significance": "Endocarditis, UTIs, intra-abdominal infections"
+    "clinical_significance": "Endocarditis, UTIs, intra-abdominal infections",
+    "image": "https://commons.wikimedia.org/wiki/File:Enterococcus_faecalis-bile_esculin.jpg"
   },
   {
     "id": 8,
@@ -335,7 +342,8 @@
       "ActA protein",
       "Internalins"
     ],
-    "clinical_significance": "Listeriosis, meningitis, septicemia in neonates and immunocompromised"
+    "clinical_significance": "Listeriosis, meningitis, septicemia in neonates and immunocompromised",
+    "image": "https://commons.wikimedia.org/wiki/File:Listeria_monocytogenes_01.jpg"
   },
   {
     "id": 11,
@@ -352,7 +360,8 @@
     "other_characteristics": {
       "oxygen_requirement": "Facultative anaerobe",
       "pathogenicity": "Causes strep throat, scarlet fever, rheumatic fever"
-    }
+    },
+    "image": "https://commons.wikimedia.org/wiki/File:Streptococcus_Pyogenes_(Group_A_Strep)_-_52621802595.jpg"
   },
   {
     "id": 12,

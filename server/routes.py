@@ -411,7 +411,7 @@ def list_microorganisms():
     # Normalize microorganism data
     for microorganism in microorganisms:
         # Ensure characteristics are dictionaries
-        for field in [ "morphology", "biochemical", "staining_characteristics", "growth_conditions",
+        for field in [ "image", "morphology", "biochemical", "staining_characteristics", "growth_conditions",
                        "virulence_factors",
                        "clinical_significance",
                         "other_characteristics",

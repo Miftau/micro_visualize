@@ -25,6 +25,12 @@
         font-weight: 600;
         color: #2c3e50;
     }
+    .micro-card .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background-color: #f8f9fc;
+    }
     .list-group-item {
         border: none;
         padding: 0.5rem 1rem;
@@ -50,6 +56,9 @@
         }
         .micro-card {
             margin-bottom: 1.5rem;
+        }
+        .micro-card .card-img-top {
+            height: 150px;
         }
         .search-form .input-group {
             flex-direction: column;
@@ -101,6 +110,11 @@
                     {% for microorganism in microorganisms %}
                         <div class="col">
                             <div class="card micro-card h-100">
+                                {% if microorganism.image and microorganism.image.url %}
+                                    <img src="{{ microorganism.image.url }}" class="card-img-top" alt="{{ microorganism.name }} image">
+                                {% else %}
+                                    <div class="card-img-top" style="background-color: #f8f9fc;"></div>
+                                {% endif %}
                                 <div class="card-header">
                                     {{ microorganism.name }}
                                 </div>
