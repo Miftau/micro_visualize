@@ -111,7 +111,7 @@
                         <div class="col">
                             <div class="card micro-card h-100">
                                 {% if microorganism.image and microorganism.image.url %}
-                                    <img src="{{ microorganism.image.url }}" class="card-img-top" alt="{{ microorganism.name }} image">
+                                    <img src="{{ microorganism.image }}" class="card-img-top" alt="{{ microorganism.name }} image">
                                 {% else %}
                                     <div class="card-img-top" style="background-color: #f8f9fc;"></div>
                                 {% endif %}
