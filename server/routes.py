@@ -1,6 +1,6 @@
-# routes.py (Fully Extended)
 
-from flask import Blueprint, render_template, request, flash
+from io import BytesIO
+from flask import Blueprint, render_template, request, flash, send_file
 from werkzeug.utils import secure_filename
 import os
 import pandas as pd
@@ -11,7 +11,6 @@ from server.utils.predict import predict_resistance  # Assume exists
 from collections import defaultdict
 
 bp = Blueprint('main', __name__)
-UPLOAD_FOLDER = "uploads/"
 
 # Load microorganisms data from file
 def load_organisms():
@@ -41,14 +40,14 @@ def index():
         file = request.files["file"]
         analysis_type = form.analysis_type.data
         if file and file.filename.endswith((".csv", ".xlsx")):
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(UPLOAD_FOLDER, filename)
-            file.save(filepath)
             try:
-                if filename.endswith(".xlsx"):
-                    df = pd.read_excel(filepath)
+                # Read file directly from memory
+                file_stream = BytesIO(file.read())
+                
+                if file.filename.endswith(".xlsx"):
+                    df = pd.read_excel(file_stream)
                 else:
-                    df = pd.read_csv(filepath)
+                    df = pd.read_csv(file_stream)
 
                 # Visual analyses
                 if analysis_type in [
@@ -148,6 +147,15 @@ def index():
                     stats = gel_band_quant(df)
                 elif analysis_type == "susceptibility_profile_stats":
                     table = susceptibility_profile_stats(df).to_html(classes="table table-bordered")
+                
+                # Make file downloadable
+                file_stream.seek(0)  # Reset stream position
+                return send_file(
+                    file_stream,
+                    as_attachment=True,
+                    download_name=file.filename,
+                    mimetype='application/octet-stream'
+                )
             except Exception as e:
                 flash(f"Error processing file: {str(e)}", "danger")
         else:
@@ -158,7 +166,6 @@ def index():
                 flash(f"{field}: {error}", "danger")
 
     return render_template("index.html", form=form, result=result, plot_url=plot_url, table=table, stats=stats, ttest=ttest)
-
 @bp.route("/manual-input", methods=["GET", "POST"])
 def manual_input():
     analysis_type_form = AnalysisTypeForm()
