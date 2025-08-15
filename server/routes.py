@@ -42,8 +42,7 @@ def index():
         if file and file.filename.endswith((".csv", ".xlsx")):
             try:
                 # Read file directly from memory
-                file_stream = BytesIO(file.read())
-                
+                file_stream = BytesIO(file.read())                
                 if file.filename.endswith(".xlsx"):
                     df = pd.read_excel(file_stream)
                 else:
