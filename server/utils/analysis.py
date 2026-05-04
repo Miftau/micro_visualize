@@ -5,17 +5,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from scipy import stats
-from scipy.optimize import curve_fit
-from sklearn.decomposition import PCA
-from sklearn.metrics import pairwise_distances
-from scipy.interpolate import UnivariateSpline
-from scipy.stats import entropy
-import networkx as nx
 import os
 import uuid
 from Bio import Phylo  #for phylogenetic diversity
-from rdkit import Chem  # For chemistry-related if needed
 # Note: Based on available libraries in the environment: numpy, scipy, pandas, matplotlib, biopython, rdkit, networkx, etc.
 
 UPLOAD_FOLDER = "uploads/"
