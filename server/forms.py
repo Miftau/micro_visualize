@@ -10,7 +10,6 @@ class UploadForm(FlaskForm):
     analysis_type = SelectField("Analysis Type", choices=[
         ("growth_curve", "Bacterial Growth Curve"),
         ("amr_heatmap", "Antimicrobial Resistance Heatmap"),
-        ("amr_prediction", "AMR Prediction (ML)"),  # Assuming this exists
         ("growth_stats", "Growth Rate & Doubling Time"),
         ("inhibition_stats", "Zone of Inhibition Stats"),
         ("cfu_stats", "CFU Count Statistics"),

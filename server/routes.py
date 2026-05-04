@@ -7,7 +7,6 @@ import pandas as pd
 from .forms import *
 import json
 from server.utils.analysis import *
-from server.utils.predict import predict_resistance  # Assume exists
 from collections import defaultdict
 
 bp = Blueprint('main', __name__)
@@ -60,8 +59,6 @@ def index():
                     "mdr_index_heatmap", "susceptibility_profile", "gel_band_quant_plot"
                 ]:
                     result, plot_url = perform_analysis(df, analysis_type)
-                elif analysis_type == "amr_prediction":
-                    table = predict_resistance(df)
                 elif analysis_type == "growth_stats":
                     stats = growth_stats(df)
                 elif analysis_type == "inhibition_stats":
